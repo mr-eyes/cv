@@ -1,0 +1,61 @@
+name: Make a Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    if: github.event.head_commit.message == 'make-a-release'
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set Date Variables (Month and Year)
+      - name: Set date variables
+        id: date_vars
+        run: |
+          MONTH=$(date +%b | tr '[:upper:]' '[:lower:]')
+          YEAR=$(date +%Y)
+          echo "MONTH=$MONTH" >> $GITHUB_ENV
+          echo "YEAR=$YEAR" >> $GITHUB_ENV
+
+      # Step 3: Set Up LaTeX Environment
+      - name: Set up LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-full
+
+      # Step 4: Compile LaTeX Files into PDF
+      - name: Compile LaTeX
+        run: |
+          cd resume
+          latexmk -pdf resume.tex
+
+      # Step 5: Rename the Generated PDF
+      - name: Rename PDF
+        run: |
+          cd resume
+          mv mo_resume_apr_2024.pdf "resume-mabuelanin-${MONTH}-${YEAR}.pdf"
+
+      # Step 6: Package LaTeX Source Files into ZIP
+      - name: Package source files
+        run: |
+          cd resume
+          zip -r source-code.zip resume.tex src/
+
+      # Step 7: Create GitHub Release with Attached Assets
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: "resume-${{ env.MONTH }}-${{ env.YEAR }}"
+          name: "Resume Release ${MONTH}-${YEAR}"
+          body: |
+            Automated release of resume for ${MONTH} ${YEAR}.
+          artifacts: |
+            resume/resume-mabuelanin-${MONTH}-${YEAR}.pdf
+            resume/source-code.zip
