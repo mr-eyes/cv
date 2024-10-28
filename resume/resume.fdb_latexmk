@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1714456344 "/home/mabuelanin/cv/resume/resume.tex" "resume.pdf" "resume" 1714456345
+["pdflatex"] 1714962603 "/home/mabuelanin/cv/resume/resume.tex" "resume.pdf" "resume" 1714962604
   "/etc/texmf/web2c/texmf.cnf" 1708982762 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/mabuelanin/cv/resume/resume.tex" 1714456344 1774 bd650f3e87aa9ce98aab1d591fb4331b ""
+  "/home/mabuelanin/cv/resume/resume.tex" 1714457561 1774 bd650f3e87aa9ce98aab1d591fb4331b ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/fontawesome5/fa5brands0.enc" 1622837620 2920 d63721872b8c77041b88e51b8f7c291d ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc" 1622837620 3042 0e2b14b9be7d01075a4c4591d5d1781b ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free2.enc" 1622837620 2906 e48aa7c95dea478a2e011bcb4f7878c9 ""
@@ -114,12 +114,12 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1708982787 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1710477392 2800121 664f590ee84cbd469524667ae2476fe0 ""
-  "custom-commands.aux" 1714456345 583 749ee3341cc529bb2c8628c78d9f23d4 "pdflatex"
+  "custom-commands.aux" 1714962603 583 749ee3341cc529bb2c8628c78d9f23d4 "pdflatex"
   "custom-commands.tex" 1708977773 1189 68773209bd9b3ca44c5fa420a78942e9 ""
-  "resume.aux" 1714456345 1545 10bcba7d28114e270b979d1299827914 "pdflatex"
-  "resume.out" 1714456345 659 aac43448e2f18739bf10d0def1a3eb3c "pdflatex"
-  "resume.tex" 1714456344 1774 bd650f3e87aa9ce98aab1d591fb4331b ""
-  "src/education.tex" 1714456198 1193 3582ac06a6af7ee59840b9a0d502757f ""
+  "resume.aux" 1714962604 1545 10bcba7d28114e270b979d1299827914 "pdflatex"
+  "resume.out" 1714962604 659 aac43448e2f18739bf10d0def1a3eb3c "pdflatex"
+  "resume.tex" 1714457561 1774 bd650f3e87aa9ce98aab1d591fb4331b ""
+  "src/education.tex" 1714962602 1194 e5bcea2f40a8c25b33d59851f39f2182 ""
   "src/experience.tex" 1714455634 1192 ddf1017fd790869bd8cd1e62a3827fa7 ""
   "src/heading.tex" 1714446288 549 0e83585d46824e03dbd13ad465d011ba ""
   "src/projects.tex" 1714445924 1367 38ea6cb9355baf70a76d673f66f9df2b ""
