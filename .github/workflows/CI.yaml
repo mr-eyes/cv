@@ -1,4 +1,4 @@
-name: Make a Release
+name: Resume CI/CD
 
 on:
   push:
@@ -6,13 +6,9 @@ on:
       - master
 
 jobs:
-  release:
-    # This job runs only if the commit message is exactly "make-a-release"
-    if: github.event.head_commit.message == 'make-a-release'
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # Grants permission to create releases and upload artifacts
-
+    
     steps:
       # Step 1: Checkout the repository
       - name: Checkout repository
@@ -34,7 +30,6 @@ jobs:
           auto-update-conda: false
           python-version: 3.9
           channels: conda-forge
-
 
       - name: Install Mamba
         run: |
@@ -60,14 +55,51 @@ jobs:
           NEW_PDF="resume-mabuelanin-${{ env.MONTH }}-${{ env.YEAR }}.pdf"
           echo "Renaming $PDF_FILE to $NEW_PDF"
           mv "$PDF_FILE" "$NEW_PDF"
+      
+      # Step 7: Upload PDF as workflow artifact (happens on every push)
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: resume-pdf
+          path: resume/resume-mabuelanin-${{ env.MONTH }}-${{ env.YEAR }}.pdf
+          retention-days: 30
 
-      # Step 7: Package LaTeX Source Files into ZIP
+  release:
+    # This job runs only if the commit message is exactly "make-a-release"
+    if: github.event.head_commit.message == 'make-a-release'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Grants permission to create releases and upload artifacts
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      # Step 2: Set Date Variables (Month and Year)
+      - name: Set date variables
+        id: date_vars
+        run: |
+          MONTH=$(date +%b | tr '[:upper:]' '[:lower:]')
+          YEAR=$(date +%Y)
+          echo "MONTH=$MONTH" >> $GITHUB_ENV
+          echo "YEAR=$YEAR" >> $GITHUB_ENV
+          
+      # Step 3: Download the PDF artifact from the build job
+      - name: Download PDF artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: resume-pdf
+          path: resume/
+
+      # Step 4: Package LaTeX Source Files into ZIP
       - name: Package source files
         run: |
           cd resume
           zip -r source-code.zip resume.tex src/
 
-      # Step 8: Create GitHub Release with Attached Assets
+      # Step 5: Create GitHub Release with Attached Assets
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
