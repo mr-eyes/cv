@@ -23,30 +23,19 @@ jobs:
           echo "MONTH=$MONTH" >> $GITHUB_ENV
           echo "YEAR=$YEAR" >> $GITHUB_ENV
 
-      # Step 3: Set Up Miniconda and Install Mamba
-      - name: Set up Miniconda
-        uses: conda-incubator/setup-miniconda@v3
-        with:
-          auto-update-conda: false
-          python-version: 3.9
-          channels: conda-forge
-
-      - name: Install Mamba
+      # Step 3: Install LaTeX packages using apt-get
+      - name: Install LaTeX packages
         run: |
-          conda install -y -c conda-forge mamba
+          sudo apt-get update
+          sudo apt-get install -y texlive texlive-latex-extra texlive-fonts-recommended latexmk
 
-      # Step 4: Install LaTeX Packages via Mamba
-      - name: Install LaTeX packages with Mamba
-        run: |
-          mamba install -y -c conda-forge texlive-core texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended latexmk
-
-      # Step 5: Compile LaTeX Files into PDF
+      # Step 4: Compile LaTeX Files into PDF
       - name: Compile LaTeX
         run: |
           cd resume
           latexmk -pdf resume.tex
 
-      # Step 6: Rename the Generated PDF
+      # Step 5: Rename the Generated PDF
       - name: Rename PDF
         run: |
           cd resume
@@ -56,7 +45,7 @@ jobs:
           echo "Renaming $PDF_FILE to $NEW_PDF"
           mv "$PDF_FILE" "$NEW_PDF"
       
-      # Step 7: Upload PDF as workflow artifact (happens on every push)
+      # Step 6: Upload PDF as workflow artifact (happens on every push)
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
         with:
