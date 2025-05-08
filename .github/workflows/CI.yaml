@@ -12,7 +12,7 @@ jobs:
     steps:
       # Step 1: Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Step 2: Set Date Variables (Month and Year)
       - name: Set date variables
@@ -25,7 +25,7 @@ jobs:
 
       # Step 3: Set Up Miniconda and Install Mamba
       - name: Set up Miniconda
-        uses: conda-incubator/setup-miniconda@v2
+        uses: conda-incubator/setup-miniconda@v3
         with:
           auto-update-conda: false
           python-version: 3.9
@@ -58,7 +58,7 @@ jobs:
       
       # Step 7: Upload PDF as workflow artifact (happens on every push)
       - name: Upload PDF artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: resume-pdf
           path: resume/resume-mabuelanin-${{ env.MONTH }}-${{ env.YEAR }}.pdf
@@ -75,7 +75,7 @@ jobs:
     steps:
       # Step 1: Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       # Step 2: Set Date Variables (Month and Year)
       - name: Set date variables
@@ -88,7 +88,7 @@ jobs:
           
       # Step 3: Download the PDF artifact from the build job
       - name: Download PDF artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: resume-pdf
           path: resume/
@@ -101,7 +101,7 @@ jobs:
 
       # Step 5: Create GitHub Release with Attached Assets
       - name: Create Release
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1.13.0
         with:
           tag: "resume-${{ env.MONTH }}-${{ env.YEAR }}"
           name: "Resume Release ${{ env.MONTH }}-${{ env.YEAR }}"
