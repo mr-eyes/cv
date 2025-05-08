@@ -29,16 +29,16 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y texlive-full texlive-latex-extra texlive-fonts-extra latexmk
           
-          # Install fontawesome5 package
-          mkdir -p ~/texmf/tex/latex/
-          cd ~/texmf/tex/latex/
-          wget https://ctan.org/tex-archive/fonts/fontawesome5/fontawesome5.sty
-          wget https://ctan.org/tex-archive/fonts/fontawesome5/fontawesome5-generic-helper.sty
-          wget https://ctan.org/tex-archive/fonts/fontawesome5/fontawesome5-mapping.def
+          # Create a simplified version of resume.tex without fontawesome5
+          cd resume
+          sed -i 's/\\usepackage{fontawesome5}/%\\usepackage{fontawesome5}/' resume.tex
           
-          # Install lato font package
-          sudo apt-get install -y texlive-fonts-extra
-          sudo apt-get install -y lmodern
+          # If there are any icons using fontawesome, replace them with text alternatives
+          sed -i 's/\\seticon{faEnvelope}/Email:/' resume.tex || true
+          sed -i 's/\\seticon{faGlobe}/Website:/' resume.tex || true
+          sed -i 's/\\seticon{faGithub}/GitHub:/' resume.tex || true
+          sed -i 's/\\seticon{faLinkedin}/LinkedIn:/' resume.tex || true
+          sed -i 's/\\seticon{faPhone}/Phone:/' resume.tex || true
 
       # Step 4: Compile LaTeX Files into PDF
       - name: Compile LaTeX
@@ -59,6 +59,7 @@ jobs:
           PDF_FILE=$(ls -t *.pdf | head -n1)
           if [ -z "$PDF_FILE" ]; then
             echo "Error: No PDF file generated"
+            cat resume.log
             exit 1
           fi
           NEW_PDF="resume-mabuelanin-${{ env.MONTH }}-${{ env.YEAR }}.pdf"
