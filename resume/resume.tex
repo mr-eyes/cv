@@ -1,10 +1,3 @@
-%-------------------------
-% Resume in Latex
-% Author : Audric Serador
-% Inspired by: https://github.com/sb2nov/resume
-% License : MIT
-%------------------------
-
 \documentclass[letterpaper,11pt]{article}
 
 \usepackage{fontawesome5}
@@ -22,7 +15,6 @@
 \input{glyphtounicode}
 
 
-
 % Custom font
 \usepackage[default]{lato}
 
@@ -36,7 +28,7 @@
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.7in}
+\addtolength{\topmargin}{-0.7in}
 \addtolength{\textheight}{2in}
 
 \urlstyle{same}
@@ -47,8 +39,7 @@
 
 % Sections formatting
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
+  \vspace{-4pt}\scshape\raggedright\large}{}{0em}{}[\color{black}\titlerule\vspace{-3pt}]
 
 % Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
@@ -61,24 +52,86 @@
 %-------------------------------------------%
 %%%%%%  RESUME STARTS HERE  %%%%%
 
-
 %----------HEADING----------%
-\input{src/heading}
+\begin{center}
+    \textbf{\Huge \scshape Mohamed Abuelanin} \\ \vspace{5pt}
+    \seticon{faPhone} \ \small (916) 699-2205 \quad
+    \href{mailto:mabuelanin@gmail.com}{\seticon{faEnvelope} \underline{mabuelanin@gmail.com}} \quad
+    \href{https://www.linkedin.com/in/mabuelanin}{\seticon{faLinkedin} \underline{mabuelanin}} \quad
+    \href{https://github.com/mr-eyes}{\seticon{faGithub} \underline{mr-eyes}} \quad
+    \href{https://wakatime.com/@mabuelanin}{\seticon{} \underline{wakatime/mabuelanin}} \quad
+\end{center}
 
-%----------HEADING----------%
-\input{src/summary}
+%----------SUMMARY----------%
+\section{Summary}
+\textbf{Computer Scientist \& Bioinformatics Engineer} with \textbf{10\,+ years of experience in software engineering and bioinformatics applications} for microbiome and genomics research. Proven track record of designing scalable, reproducible computational frameworks that enable petabyte‑scale NGS data analysis and accelerate scientific discovery.
 
-%-----------EDUCATION-----------%
-\input{src/education.tex}
-
-%-----------EXPERIENCE-----------%
-\input{src/experience}
-
-%-----------PROJECTS-----------%
-\input{src/projects}
 
 %-----------SKILLS-----------%
-\input{src/skills.tex}
+\section{Technical Skills} 
+\textbf{Programming} (Python, C++, Rust) - \textbf{Web} (WebAssembly, HTML/JS/CSS, Php) - \textbf{Databases} (SQL, Neo4J/Cypher, MemGraph) - 
+\textbf{Workflows} (Snakemake, NextFlow, WDL) - \textbf{DevOps} (Git, CI/CD, unit-testing, Docker, Kubernetes, AWS) - \textbf{Distributed systems} (RPC over-network programs) - \textbf{Bioinformatics} (NGS analysis, calling variants (SNPs \& INDELs), pangenomes, population-level studies, custom scalable software solutions, k-mer-based analysis).
 
-%-------------------------------------------%
+%-----------EDUCATION-----------%
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of California, Davis}{Davis, CA}
+      {Ph.D. in Computer Science | Thesis: Petabyte-scale sequence characterization}{Sep. 2020 -- Jun. 2024}
+
+    \resumeSubheading
+      {Nile University}{Giza, Egypt}
+      {M.Sc. in Communication and Information Technology | Thesis: kmer-based sequence partitioning}{Mar. 2017 -- Aug. 2020}
+
+    \resumeSubheading
+      {Higher Technological Institute}{Cairo, Egypt}
+      {B.Sc. in Electrical/Biomedical Engineering | Thesis: ML-Based Taxonomic Classification}{Sep. 2011 -- Jan. 2017}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------%
+\section{Experience}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {University of California, Davis -- Megan Dennis' Lab, Genome Center}{Davis, CA}
+    {Postdoctoral Researcher – Studying genomic variation across human duplicated genes}{Jul. 2024 -- Present}
+\
+  \resumeSubheading
+    {University of California, Davis -- Titus Brown's Lab, School of Veterinary Medicine}{Davis, CA}
+    {Graduate Student Researcher – Scalable framework for massive-scale sequence QC}{Sep. 2020 -- Jun. 2024}
+\
+  \resumeSubheading
+    {Marine Biological Laboratory (MBL)}{Woods Hole, MA}
+    {Teaching Assistant, Gene Regulatory Networks Workshop}{Oct. 2023}
+\
+  \resumeSubheading
+    {University of California, Davis}{Davis, CA}
+    {Instructor, Data Analysis Collaboratory Workshop}{Jun. 2023}
+\
+  \resumeSubheading
+    {Nile University}{Giza, Egypt}
+    {Graduate Teaching Assistant, ML, Big Data, and Advanced NGS Courses}{Mar. 2019 -- Aug. 2020}
+\
+  \resumeSubheading
+    {Artronix}{Egypt}
+    {R\&D Contract Software Engineer – Programming \& Embedded Systems Instructor}{Jan. 2013 -- Nov. 2017}
+
+\resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------%
+\section{Projects}
+\noindent
+\begin{tabular}{@{}p{0.25\textwidth} p{0.7\textwidth}}
+  \textbf{\href{https://snipe-bio.github.io/}{snipe}} & SRA-scale lightweight sequence QC and assessment  \\
+  \textbf{\href{https://snipe-bio.github.io/}{Sequencing ROI}} & Predict library complexity using alpha-diversity and rarefaction curves  \\
+  \textbf{\href{https://github.com/dib-lab/kProcessor}{kProcessor}} & Efficient Sequence K-mer indexing and Analysis \\
+  \textbf{\href{https://dbretina.github.io/DBRetina/}{DBRetina}} & Gene Overlap Super Network \\
+  \textbf{\href{https://github.com/dib-lab/kSpider}{kSpider}} & K-mer based ultrafast pairwise DNA clustering tool \\
+  \textbf{\href{https://github.com/sourmash-bio/sourmash}{sourmash}}  & Metagenome analysis and genome comparison using k-mers \\
+  \textbf{\href{https://github.com/mr-eyes/denovo-rnaseq}{denovo-rnaseq}} & De novo assembly, DEGs, and annotation snakemake workflow \\
+  \textbf{\href{https://github.com/mr-eyes/guidedPartitioner}{guidedPartitioner}} & RNA-Seq ref-based reads partitioning for accurate assembly \\
+  \textbf{\href{https://github.com/mr-eyes/kDecontaminer}{kDecontaminer}} & RNA-Seq Decontamination tool for a cleaner de novo transcriptome assembly \\
+  \textbf{\href{https://github.com/mr-eyes/codons-optimizer}{Codon Optimization Tool}} & A tool for optimizing cDNA sequences using codon usage bias for DNA vaccines \\
+\end{tabular}
+
 \end{document}
